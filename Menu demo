@@ -1,0 +1,45 @@
+import java.awt.*;
+class MyFrame extends Frame
+{
+    Menu file,sub;
+    MenuItem open,save,close,closeAll;
+    CheckboxMenuItem auto;
+    TextField tf;
+    MyFrame()
+    {
+        super("Menu demo");
+        open=new MenuItem("Open");
+        save=new MenuItem("Save");
+        close=new MenuItem("Close");
+        closeAll=new MenuItem("Close all");
+        auto=new CheckboxMenuItem("Auto on");
+       
+        sub=new Menu("Close");
+        sub.add(close);
+        sub.add(closeAll);
+        
+        file=new Menu("File");
+        file.add(open);
+        file.add(save);
+        file.add(sub);
+        file.add(auto);
+        
+        
+        
+        MenuBar mb= new MenuBar();
+        mb.add(file);
+      
+        setMenuBar(mb);
+    }
+    
+}
+
+public class MenuDemo
+{
+    public static void main(String args[])
+    {
+        MyFrame f=new MyFrame();
+        f.setSize(300,300);
+        f.setVisible(true);
+    }
+}
