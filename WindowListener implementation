@@ -1,0 +1,55 @@
+import java.awt.*;
+import java.awt.event.*;
+
+class MyFrame extends Frame implements WindowListener
+{
+    Label l1;
+    MyFrame()
+    {
+        super("WindowListener Demo");
+        l1=new Label("");
+        setLayout(new FlowLayout());
+        add(l1);
+        addWindowListener(this);
+    }
+    public void windowOpened(WindowEvent e)
+    {
+        l1.setText("Window opened");
+    }
+    public void windowClosing(WindowEvent e)
+    {
+        l1.setText("Window Closing");
+    }
+    public void windowClosed(WindowEvent e)
+    {
+        l1.setText("Window Closed");
+        System.exit(0);
+    }
+    public void windowActivated(WindowEvent e)
+    {
+        l1.setText("Window Activated");
+    }
+    public void windowDeactivated(WindowEvent e)
+    {
+        l1.setText("Window Deactivated");
+    }
+    public void windowIconified(WindowEvent e)
+    {
+        l1.setText("Window Iconified");
+    }
+    public void windowDeiconified(WindowEvent e)
+    {
+        l1.setText("Window Deiconified");
+    }
+    
+    
+}
+public class Window {
+
+    public static void main(String[] args) {
+      MyFrame f=new MyFrame();
+      f.setSize(300,300);
+      f.setVisible(true);
+    }
+    
+}
