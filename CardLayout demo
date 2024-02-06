@@ -1,69 +1,62 @@
 import java.awt.*;
 import java.awt.event.*;
-
-class MyFrame extends Frame implements ItemListener {
-    
-    Panel p1, p2, cd, mn;
-    Checkbox c1, c2;
-    Button b1, b2, b3;
-    TextField t1, t2, t3;
-    
-    
-    CardLayout cl;
-
-    MyFrame() {
-        super("CardLayout demo");
- 
-        CheckboxGroup cbg = new CheckboxGroup();
-        c1 = new Checkbox("One", true, cbg);
-        c2 = new Checkbox("Two", false, cbg);
-        c1.addItemListener(this);
-        c2.addItemListener(this);
-         p1 = new Panel();
-        p1.add(c1);
-        p1.add(c2);
-
-         b1 = new Button("One");
-        b2 = new Button("Two");
-        b3 = new Button("Three");
-         p2 = new Panel();
-        p2.add(b1);
-        p2.add(b2);
-        p2.add(b3);
-
-
-        t1 = new TextField(10);
-        t2 = new TextField(10);
-        t3 = new TextField(10);
-cd = new Panel();
-        cd.add(t1);
-        cd.add(t2);
-        cd.add(t3);
+class MyFrame extends Frame 
+{
+    Menu file,sub;
+    MenuItem open,save,close,closeAll;
+    CheckboxMenuItem auto;
+    TextField tf;
+    MyFrame()
+    {
+        super("Menu demo");
+        open=new MenuItem("Open");
+        save=new MenuItem("Save");
+        close=new MenuItem("Close");
+        closeAll=new MenuItem("Close all");
+        auto=new CheckboxMenuItem("Auto");
        
-
-        mn = new Panel();
-        cl = new CardLayout();
-        mn.setLayout(cl);
-        mn.add("One", p2);
-        mn.add("Two", cd);
-
-        add(p1, BorderLayout.NORTH);
-        add(mn, BorderLayout.CENTER);
+        sub=new Menu("Close");
+        sub.add(close);
+        sub.add(closeAll);
+        
+        file=new Menu("File");
+        file.add(open);
+        file.add(save);
+        file.add(sub);
+        file.add(auto);
+        
+        
+        
+        MenuBar mb= new MenuBar();
+        mb.add(file);
+      
+        setMenuBar(mb);
+        tf=new TextField(20);
+        add(tf);
+        setLayout(new FlowLayout());
+        
+        open.addActionListener((ActionEvent ae)-> tf.setText("Open"));
+        save.addActionListener((ActionEvent ae)-> tf.setText("Save"));
+        close.addActionListener((ActionEvent ae)-> tf.setText("Close"));
+        closeAll.addActionListener((ActionEvent ae)-> tf.setText("Close all"));
+        
+        auto.addItemListener((ItemEvent ie)-> {
+            if(auto.getState())
+                tf.setText("Auto on");
+            else
+                tf.setText("Auto off");
+        });
+        
     }
-
-    public void itemStateChanged(ItemEvent e) {
-        if (c1.getState())
-            cl.first(mn);
-        else
-            cl.last(mn);
-    }
+    
 }
 
-public class CheckBox {
-    public static void main(String[] args) {
-        MyFrame f = new MyFrame();
-        f.setSize(300, 300);
+public class MenuDemo
+{
+    public static void main(String args[])
+    {
+        MyFrame f=new MyFrame();
+        f.setSize(300,300);
         f.setVisible(true);
     }
 }
-
