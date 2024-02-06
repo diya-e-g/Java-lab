@@ -1,0 +1,27 @@
+import java.awt.*;
+import java.awt.event.*;
+class MyWindowAdapter extends WindowAdapter
+{
+    public void windowClosing(WindowEvent e)
+    {
+        System.exit(0);
+    }
+}
+class MyFrame extends Frame
+{
+    MyFrame()
+    {
+        super("Adapter demo");
+        addWindowListener(new MyWindowAdapter());
+    }
+}
+
+public class Adapter
+{
+    public static void main(String args[])
+    {
+        MyFrame f=new MyFrame();
+        f.setSize(300,300);
+        f.setVisible(true);
+    }
+}
