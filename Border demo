@@ -1,0 +1,29 @@
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.Border;
+
+class MyFrame extends JFrame
+{
+   JTextField tf;
+   JButton b;
+   JPanel p;
+   
+   MyFrame()
+   {
+       super("Border demo");
+       tf= new JTextField(10);
+       b= new JButton("Click");
+       p= new JPanel();
+       
+       setLayout(new FlowLayout());
+       
+       p.add(tf);
+       p.add(b);
+       
+       add(p);
+       
+       Border bo= BorderFactory.createTitledBorder("Login");
+       p.setBorder(bo);
+   }
+   
+}
