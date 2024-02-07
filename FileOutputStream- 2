@@ -1,0 +1,23 @@
+public class FileDemo
+{
+    public static void main(String args[])
+    {
+        try
+        {
+        FileOutputStream fos= new FileOutputStream("Test.txt");
+        String str="Learn java";
+        byte b[]=str.getBytes();
+	for(int x:b)
+	fos.write(x);        
+        
+    }
+        catch(FileNotFoundException e)
+        {
+            System.out.println(e);
+        }
+        catch(IOException e)
+        {
+            System.out.println(e);
+        }
+    }
+}
