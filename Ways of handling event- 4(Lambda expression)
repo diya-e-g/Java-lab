@@ -1,0 +1,36 @@
+import java.awt.*;
+import java.awt.event.*;
+
+class MyFrame extends Frame 
+{
+    TextField tf;
+    Button b;
+    int count=0;
+    MyFrame()
+    {
+        super("Way of event handling 1");
+        tf= new TextField("0",20);
+       
+        b= new Button("Click");
+        b.addActionListener((ActionEvent ae)->
+    {
+        count++;
+        tf.setText(String.valueOf(count));
+    }    
+        );
+        setLayout(new FlowLayout());
+        add(tf);
+        add(b);
+    }
+    
+}
+
+public class WaysOfEventHandling {
+
+    public static void main(String[] args) {
+     MyFrame f=new MyFrame();
+     f.setSize(300,300);
+     f.setVisible(true);
+    }
+    
+}
