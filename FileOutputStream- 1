@@ -1,0 +1,24 @@
+import java.io.*;
+
+public class FileDemo
+{
+    public static void main(String args[])
+    {
+        try
+        {
+        FileOutputStream fos= new FileOutputStream("Test.txt");
+        String str="Hello world";
+        fos.write(str.getBytes());
+        
+        
+    }
+        catch(FileNotFoundException e)
+        {
+            System.out.println(e);
+        }
+        catch(IOException e)
+        {
+            System.out.println(e);
+        }
+    }
+}
