@@ -1,0 +1,17 @@
+import java.io.*;
+
+public class Copy
+{
+    public static void main(String args[]) throws Exception
+    {
+        FileInputStream fis1=new FileInputStream("in.txt");
+         FileInputStream fis2=new FileInputStream("out.txt");
+        FileOutputStream fos=new FileOutputStream("comb.txt");
+        
+        SequenceInputStream sis=new SequenceInputStream(fis1,fis2);
+        int b;
+       while((b=sis.read())!=-1)
+           fos.write(b);
+        
+    }
+}
