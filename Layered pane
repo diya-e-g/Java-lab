@@ -1,0 +1,93 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+class MyFrame extends JFrame implements ActionListener
+{
+    JRadioButton r1,r2,r3;
+    JPanel p;
+    JLabel l1,l2,l3,l4;
+    JLayeredPane lp;
+    
+    MyFrame()
+    {
+        super("Layered pane demo");
+        
+        ButtonGroup bg=new ButtonGroup();
+        r1=new JRadioButton("Blue");
+        r2=new JRadioButton("Red");
+        r3=new JRadioButton("Green");
+        bg.add(r1);
+        bg.add(r2);
+        bg.add(r3);
+        r1.addActionListener(this);
+        r2.addActionListener(this);
+        r3.addActionListener(this);
+        
+        p=new JPanel();
+        p.add(r1);
+        p.add(r2);
+        p.add(r3);
+        
+        l1=new JLabel("Blue");
+        l1.setBackground(Color.BLUE);
+        l1.setBounds(20,50,100,200);
+        l1.setOpaque(true);
+        
+        l2=new JLabel("Red");
+        l2.setBackground(Color.RED);
+        l2.setBounds(50,100,100,200);
+        l2.setOpaque(true);
+        
+        l3=new JLabel("Green");
+        l3.setBackground(Color.GREEN);
+        l3.setBounds(80,150,100,200);
+        l3.setOpaque(true);
+        
+        l4=new JLabel("Black");
+        l4.setBackground(Color.BLACK);
+        l4.setBounds(10,50,50,50);
+        l4.setOpaque(true);
+        
+        lp=new JLayeredPane();
+        lp.add(l1, new Integer(0));
+        lp.add(l2,new Integer(1));
+        lp.add(l3,new Integer(2));
+        lp.add(l4,new Integer(3));
+        
+        addMouseMotionListener(new MouseAdapter(){
+            public void mouseMoved(MouseEvent me)
+            {
+                l4.setLocation(me.getX(), me.getY());
+       
+            }
+        });
+     
+   add(p,BorderLayout.NORTH);
+   add(lp,BorderLayout.CENTER);
+   
+  
+   
+    }
+       
+     public void actionPerformed(ActionEvent ae)
+     {
+         if(r1.isSelected())
+             lp.setLayer(l4,1);
+         if(r2.isSelected())
+             lp.setLayer(l4,2);
+         if(r3.isSelected())
+             lp.setLayer(l4,3);
+     }
+
+}
+
+public class LayerDemo
+{
+    public static void main(String args[])
+    {
+        MyFrame f=new MyFrame();
+        f.setSize(500,500);
+        f.setVisible(true);
+    }
+}
