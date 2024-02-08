@@ -1,0 +1,185 @@
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+
+class MyFrame extends JFrame implements ActionListener
+{
+    JTextField tf;
+    JButton b1,b2,b3,b4,b5,b6,b7,b8,b9,b0,bs,ba,bm,bd,be,bc;
+    JPanel p;
+    static int a=0,b=0,result=0,op=0;
+    
+    MyFrame()
+    {
+        super("Calculator");
+        
+        tf= new JTextField(25);
+        tf.setLayout(new FlowLayout());
+        
+        p=new JPanel();
+        b1=new JButton("1");
+        b2=new JButton("2");
+        b3=new JButton("3");
+        b4=new JButton("4");
+        b5=new JButton("5");
+        b6=new JButton("6");
+        b7=new JButton("7");
+        b8=new JButton("8");
+        b9=new JButton("9");
+        b0=new JButton("0");
+        bs=new JButton("-");
+        ba=new JButton("+");
+        bm=new JButton("*");
+        bd=new JButton("/");
+        be=new JButton("=");
+        bc=new JButton("C");
+        p.add(b1);
+        p.add(b2);
+        p.add(b3);
+        p.add(b4);
+        p.add(b5);
+        p.add(b6);
+        p.add(b7);
+        p.add(b8);
+        p.add(b9);
+        p.add(b0);
+        p.add(bs);
+        p.add(ba);
+        p.add(bm);
+        p.add(bd);
+        p.add(be);
+        p.add(bc);
+       
+        p.setLayout(new GridLayout(4,4));
+        
+        b1.addActionListener(this);
+        b2.addActionListener(this);
+        b3.addActionListener(this);
+        b5.addActionListener(this);
+        b6.addActionListener(this);
+        b7.addActionListener(this);
+        b8.addActionListener(this);
+        b9.addActionListener(this);
+        b0.addActionListener(this);
+        bs.addActionListener(this);
+        ba.addActionListener(this);
+        bm.addActionListener(this);
+        bd.addActionListener(this);
+        be.addActionListener(this);
+        bc.addActionListener(this);
+        
+        add(tf,BorderLayout.NORTH);
+        add(p,BorderLayout.CENTER);
+       
+       
+       
+        
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+       
+        if(e.getSource()==b1)
+        {
+            tf.setText(tf.getText().concat("1"));
+        }
+        if(e.getSource()==b2)
+        {
+            tf.setText(tf.getText().concat("2"));
+        }
+        if(e.getSource()==b3)
+        {
+            tf.setText(tf.getText().concat("3"));
+        }
+        if(e.getSource()==b4)
+        {
+            tf.setText(tf.getText().concat("4"));
+        }
+        if(e.getSource()==b5)
+        {
+            tf.setText(tf.getText().concat("5"));
+        }
+        if(e.getSource()==b6)
+        {
+            tf.setText(tf.getText().concat("6"));
+        }
+        if(e.getSource()==b7)
+        {
+            tf.setText(tf.getText().concat("7"));
+        }
+        if(e.getSource()==b8)
+        {
+            tf.setText(tf.getText().concat("8"));
+        }
+        if(e.getSource()==b9)
+        {
+            tf.setText(tf.getText().concat("9"));
+        }
+        if(e.getSource()==b0)
+        {
+            tf.setText(tf.getText().concat("0"));
+        }
+        if(e.getSource()==bs)
+        {
+            a=Integer.parseInt(tf.getText());
+            op=1;
+            tf.setText("");
+            
+        }
+        if(e.getSource()==ba)
+        {
+           a=Integer.parseInt(tf.getText());
+           op=2;
+            tf.setText("");
+        }
+        if(e.getSource()==bm)
+        {
+             a=Integer.parseInt(tf.getText());
+             op=3;
+            tf.setText("");
+        }
+        if(e.getSource()==bd)
+        {
+             a=Integer.parseInt(tf.getText());
+           op=4;
+            tf.setText("");
+        }
+        if(e.getSource()==be)
+        {
+            b=Integer.parseInt(tf.getText());
+            switch(op)
+            {
+                case 1: result=a-b;
+                break;
+                case 2: result=a+b;
+                break;
+                case 3: result=a*b;
+                break;
+                case 4: result=a/b;
+                break;
+                default: result=0;
+            
+            }
+            tf.setText(result+"");
+        }
+        if(e.getSource()==bc)
+        {
+          
+            tf.setText("");
+        }
+       
+    }
+}
+    
+    public class Calc
+    {
+        public static void main(String args[])
+        {
+            MyFrame f= new MyFrame();
+            f.setSize(200,200);
+            f.setVisible(true);
+            f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        }
+    }
+    
