@@ -1,0 +1,80 @@
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+
+class MyFrame extends JFrame implements ActionListener
+{
+    JTextField tf;
+    JButton b;
+    public int n;
+    
+    MyFrame()
+    {
+        super("Demo");
+        tf=new JTextField(20);
+        b=new JButton("Print");
+        add(tf);
+        add(b);
+        b.addActionListener(this);
+        setLayout(new FlowLayout());
+    }
+    public void actionPerformed(ActionEvent ae)
+    {
+      String s=tf.getText();
+      n=Integer.parseInt(s);
+     Print pa=new Print();
+     Thread1 t1=new Thread1(pa);
+     Thread2 t2=new Thread2(pa);
+      t1.start();
+      t2.start();
+    }
+    
+    public class Print
+    {
+        int i;
+        public synchronized void display(String str,int x)
+        {
+           for(i=0;i<x;i++)
+           {
+               System.out.println(str);
+           }
+        }
+    }
+    
+    class Thread1 extends Thread
+    {
+        Print p;
+        public Thread1(Print p)
+        {
+            this.p=p;
+        }
+        public void run()
+        {
+            p.display("Thrikkakara", n);
+        }
+    }
+    
+     class Thread2 extends Thread
+    {
+        Print p;
+        public Thread2(Print p)
+        {
+            this.p=p;
+        }
+        public void run()
+        {
+            p.display("Kochi", n);
+        }
+    }
+
+}
+public class Set3
+{
+    public static void main(String args[])
+    {
+        MyFrame f= new MyFrame();
+        f.setSize(300,300);
+        f.setVisible(true);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+}
