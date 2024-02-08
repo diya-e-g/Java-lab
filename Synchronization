@@ -1,0 +1,60 @@
+class MyData
+{
+    synchronized public void display(String str)
+    {
+        int i;
+        for(i=0;i<str.length();i++)
+        {
+            System.out.print(str.charAt(i));
+        }
+    
+    }
+}
+
+class Thread1 extends Thread
+{
+    MyData d;
+    public Thread1(MyData d)
+    {
+        this.d=d;
+    }
+    public void run()
+    {
+        try
+        {
+        d.display("Hello world");
+        Thread.sleep(500);
+        }
+        catch(Exception e)
+        {
+            System.out.print(e);
+        }
+    }
+}
+
+class Thread2 extends Thread
+{
+    MyData d;
+    public Thread2(MyData d)
+    {
+        this.d=d;
+    }
+    public void run()
+    {
+        d.display("Java programming");
+    }
+}
+
+public class Sync
+{
+    public static void main(String args[])
+    {
+        MyData data=new MyData();
+        Thread1 t1= new Thread1(data);
+        Thread2 t2= new Thread2(data);
+        t1.start();
+        t2.start();
+        
+    }
+    
+}
