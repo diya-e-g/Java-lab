@@ -1,0 +1,70 @@
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import javax.swing.*;
+import java.util.*;
+
+class MyFrame extends JFrame implements ActionListener
+{
+    JTextArea ta;
+    JButton b;
+    public String str;
+    
+    MyFrame()
+    {
+        super("Demo");
+        ta=new JTextArea(4,20);
+        b=new JButton("Save");
+        b.addActionListener(this);
+        add(ta);
+        add(b);
+        
+        setLayout(new FlowLayout()); 
+    }
+    
+    public void actionPerformed(ActionEvent ae)
+    {
+        str=ta.getText();
+        displayfile();
+        
+    }
+    
+    public void displayfile()
+    {
+        try
+        {
+        FileWriter fr=new FileWriter("test.txt");
+        fr.write(str);
+        StringTokenizer st=new  StringTokenizer(str," ");
+        fr.write("\n"+ "SI NO" +"   " +"Token"+"\n");
+        int i;
+        while(st.hasMoreTokens())
+        {
+            for(i=111;i<114;i++)
+            {
+            String word=st.nextToken();
+             fr.write("\n"+ i +"   " +word+"\n");
+        }}
+        
+        fr.close();
+        }
+        catch(Exception e)
+        {
+            System.out.print(e);
+        }
+        
+        
+    }
+    
+}
+
+public class Set4
+        {
+    public static void main(String args[])
+    {
+        MyFrame f=new MyFrame();
+        f.setSize(300,300);
+        f.setVisible(true);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+}
